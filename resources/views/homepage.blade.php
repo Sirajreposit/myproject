@@ -89,7 +89,7 @@
                                           <input type="file" id="fileInput" style="display: none;">
                                           <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="#">Edit Profile</a>
-                                          <a class="dropdown-item" href="#">Logout</a>
+                                          <a class="dropdown-item" href="{{url('/login')}}">Logout</a>
                                       </div>
                                   </li>
                               </ul>

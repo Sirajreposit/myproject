@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('demo');
-});
 
-Route::get('/register',[LoginController::class,'index']);
-Route::get('/login',[LoginController::class,'func']);
-Route::get('/homee',[LoginController::class,'home']);
+Route::get('/',[LoginController::class,'register']);
+Route::get('/register',[LoginController::class,'register']);
+Route::get('/login',[LoginController::class,'login']);
+Route::get('/homepage',[LoginController::class,'homepage']);
+Route::get('/login',[LoginController::class,'logout']);
 

@@ -6,21 +6,27 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function register()
+    {
+        return view('register');
+    } 
+
+    
+    public function login()
     {
         return view('login');
     } 
 
-    
-    public function func()
-    {
-        return view('demo');
-    } 
-
 
     
-    public function home()
+    public function homepage()
     {
         return view('homepage');
+    } 
+
+    
+    public function logout()
+    {
+        return view('login');
     } 
 }
