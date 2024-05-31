@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[LoginController::class,'register']);
+Route::get('/',[LoginController::class,'register'])
+->name('home');
 Route::get('/register',[LoginController::class,'register']);
 Route::get('/login',[LoginController::class,'login']);
+Route::post('/login',[LoginController::class,'loginPost'])->name('login.post');
+Route::post('/register',[LoginController::class,'register'])->name('register.post');
 Route::get('/homepage',[LoginController::class,'homepage']);
-Route::get('/login',[LoginController::class,'logout']);
-
+Route::get('/login',[LoginController::class,'logoutt']);
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
