@@ -65,26 +65,23 @@
                                     </div>
                                     <div class="form-outline mb-3">
                                         <label class="form-label" for="number">Ph Number</label>
-                                        <input type="text" id="number" class="form-control form-control-lg" name="number" />
+                                        <input type="text" id="number" class="form-control form-control-lg" name="phone" />
                                     </div>
                                     <div class="form-outline mb-3">
                                         <label class="form-label" for="password">Password</label>
                                         <input type="password" id="password" class="form-control form-control-lg" name="password" />
                                     </div>
-                                    <div class="form-outline mb-3">
-                                        <label class="form-label" for="rpassword">Repeat your password</label>
-                                        <input type="password" id="rpassword" class="form-control form-control-lg" name="rpassword" />
-                                    </div>
-                                    <div class="form-check d-flex justify-content-center mb-4">
+                                  
+                                    {{-- <div class="form-check d-flex justify-content-center mb-4">
                                         <input class="form-check-input me-2" type="checkbox" value="" id="terms" />
                                         <label class="form-check-label" for="terms">
                                             I agree to all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
                                         </label>
-                                    </div>
+                                    </div> --}}
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-success btn-register btn-lg gradient-custom-4 text-body">Register</button>
                                     </div>
-                                    <p class="text-center text-muted mt-4 mb-0">Already have an account? <a href="{{ url('/login') }}" class="fw-bold text-body"><u>Login here</u></a></p>
+                                    <p class="text-center text-muted mt-4 mb-0">Already have an account? <a href="{{ route('auth.login') }}" class="fw-bold text-body"><u>Login here</u></a></p>
                                 </form>
                             </div>
                         </div>

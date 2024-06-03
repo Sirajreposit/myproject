@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[LoginController::class,'register'])
 ->name('home');
-Route::get('/register',[LoginController::class,'register']);
-Route::get('/login',[LoginController::class,'login']);
-Route::post('/login',[LoginController::class,'loginPost'])->name('login.post');
-Route::post('/register',[LoginController::class,'register'])->name('register.post');
-Route::get('/homepage',[LoginController::class,'homepage']);
-Route::get('/login',[LoginController::class,'logoutt']);
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::get('/auth/login',[LoginController::class,'login'])->name('auth.login');
+Route::post('/auth/login',[LoginController::class,'loginPost'])->name('login.post');
+Route::get('/auth/register',[LoginController::class,'register'])->name('auth.register');
+Route::post('/auth/register',[LoginController::class,'registration'])->name('register.post');
+Route::get('/auth/homepage',[LoginController::class,'home'])->name('dashboard');
+Route::get('/auth/logout',[LoginController::class,'logout'])->name('auth.logout');
+
+

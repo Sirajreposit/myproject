@@ -14,7 +14,7 @@
         <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
           <div class="bg-white p-4 p-md-5 rounded shadow-sm">
             <h3 class="mb-5">Log in</h3>
-            <form action="{{ route('login.post') }}" method="Post">
+            <form action="{{route('login.post')}}" method="Post">
               @csrf
               <div class="mb-3">
                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
@@ -32,7 +32,7 @@
             </form>
             <hr class="mt-5 mb-4 border-secondary-subtle">
             <div class="d-flex justify-content-md-end gap-2 gap-md-4">
-              <a href="{{url('/register')}}" class="link-secondary text-decoration-none">Create new account</a>
+              <a href="{{route('auth.register')}}" class="link-secondary text-decoration-none">Create new account</a>
               <a href="#!" class="link-secondary text-decoration-none">Forgot password</a>
             </div>
           </div>

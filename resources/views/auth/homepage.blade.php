@@ -18,6 +18,49 @@
   .title-content{
     height: 60vh;
   }
+
+  <!-->
+    .offcanvas-header {
+    background-color: #343a40; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+.offcanvas-title {
+    color: #fff; /* Light text color */
+}
+
+.offcanvas-body {
+    padding: 20px; /* Add padding for better appearance */
+}
+
+.offcanvas-body .text-muted {
+    font-size: 14px; /* Adjust font size */
+}
+
+.offcanvas-body ul {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 10px; /* Add gap between items */
+    padding: 0; /* Remove default padding */
+}
+
+.offcanvas-body ul li {
+    padding: 10px; /* Add padding to list items */
+    border-radius: 5px; /* Add border radius */
+    background-color: #70b088; /* Light background color */
+    transition: background-color 0.3s; /* Add transition */
+}
+
+.offcanvas-body ul li a {
+    color: #343a40; /* Dark text color */
+    text-decoration: none; /* Remove default underline */
+}
+
+.offcanvas-body ul li:hover {
+    background-color: #e9ecef; /* Change background color on hover */
+}
+
+
 </style>
 
 <body>
@@ -31,12 +74,12 @@
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
           aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
-              <h5 class="offcanvas-title bg-success" id="offcanvasExampleLabel ">Settings</h5>
+              <h5 class="offcanvas-title" id="offcanvasExampleLabel ">Settings</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
               <div>
-                  Some text as placeholder
+                 <h3>Essentials</h3>
               </div>
               <ul class="list-unstyled">
                   <li><a href="#">Date</a></li>
@@ -89,7 +132,7 @@
                                           <input type="file" id="fileInput" style="display: none;">
                                           <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="#">Edit Profile</a>
-                                          <a class="dropdown-item" href="{{url('/login')}}">Logout</a>
+                                          <a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a>
                                       </div>
                                   </li>
                               </ul>

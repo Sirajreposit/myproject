@@ -2,84 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
 
 class LoginController extends Controller
 {
     public function register()
     {
-        return view('register');
+        return view('auth.register');
     } 
 
-    
     public function login()
     {
-        return view('login');
+        return view('auth.login');
     } 
 
-
-    
-    public function homepage()
+    public function home()
     {
-        return view('homepage');
+        return view('auth.homepage');
     } 
 
-    
-    public function logoutt()
+
+    public function loginPost(Request $request)
     {
-        return view('login');
-    } 
-
-
-function loginPost(Request $request){
-         $request->validate([
+        $request->validate([
             'email'=>'required',
             'password'=>'required'
-         ]);
+        ]);
 
-         $credentials=$request->only('email','password');
-         if(Auth::attempt($credentials)){
-            return redirect()->intended(route('home'));
-            return redirect(route('login.post'))->with('error','error occours');
-         }
-}
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended(route('dashboard'));
+        } else {
+            return redirect(route('auth.login'))->with('error', 'Invalid credentials');
+        }
+    }
 
+    public function registration(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|string|max:20',
+            'password' => 'required|string|min:8',
+        ]);
 
-function registration(Request $request){
-    $request->validate([
-        'name'=>'required',
-        'email'=>'required|email|unique:user',
-        'number'=>'required',
-        'password'=>'required',
-        'rpassword'=>'required',
-     ]);
+        // Prepare the data array
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
+        
+        // Create the user
+        $save = $user->save();
 
-     $data['name']=$request->name;
-     $data['email']=$request->email;
-     $data['number']=$request->number;
-     $data['password']=hash::make($request->password);
-     $data['rpassword']=$request->rpassword;
-     $user = User::create($data);
-     if(!$user){
-          return redirect(route('register'))->with('error',"login details not valid");
-     }
+        // Check if user creation was successful
+        if (!$save) {
+            return redirect(route('auth.login'))->with('error', "Registration failed. Please try again.");
+        }
 
+        return redirect(route('auth.login'))->with('success', "Registration successful. Please log in.");
+    }
 
-     return redirect(route('login'))->with('error',"login Successfull");
-
-    function logout(){
+    public function logout()
+    {
         Session::flush();
         Auth::logout();
-        return redirect(route('login'));
-
-
+        return redirect(route('auth.login'));
     }
-   
-
 }
-}
-
