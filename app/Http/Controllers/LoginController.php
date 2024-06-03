@@ -7,9 +7,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\Category;
+
 
 class LoginController extends Controller
 {
+    public function index()
+    {
+        return view('auth.category');
+    } 
+
+
     public function register()
     {
         return view('auth.register');
@@ -23,8 +31,7 @@ class LoginController extends Controller
     public function home()
     {
         return view('auth.homepage');
-    } 
-
+    }
 
     public function loginPost(Request $request)
     {
@@ -74,4 +81,8 @@ class LoginController extends Controller
         Auth::logout();
         return redirect(route('auth.login'));
     }
+
+
+
+   
 }

@@ -24,5 +24,7 @@ Route::get('/auth/register',[LoginController::class,'register'])->name('auth.reg
 Route::post('/auth/register',[LoginController::class,'registration'])->name('register.post');
 Route::get('/auth/homepage',[LoginController::class,'home'])->name('dashboard');
 Route::get('/auth/logout',[LoginController::class,'logout'])->name('auth.logout');
+Route::get('auth/Category',[LoginController::class,'index'])->name('category');
+
 
 

@@ -86,7 +86,7 @@
                   <li><a href="#">Amount</a></li>
                   <li><a href="#">Purchase</a></li>
                   <li><a href="#">Reciept</a></li>
-                  <li><a href="#">Expences Types</a></li>
+                  <li><a href="{{route("category")}}">Expences</a></li>
               </ul>
           </div>
       </div>
@@ -156,11 +156,7 @@
               </div>
 
               <!-- Main content -->
-              <div class="container d-flex justify-content-center flex-column align-items-center title-content text-black">
-                  <h1>Welcome to Innoit Labs</h1><br>
-                  <p>Web And Mobile Aoolication Development</p>
-
-              </div>
+            
           </div>
       </div>
   </div>
