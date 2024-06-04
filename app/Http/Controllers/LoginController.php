@@ -12,9 +12,10 @@ use App\Models\Category;
 
 class LoginController extends Controller
 {
+
     public function index()
     {
-        return view('auth.category');
+        return view('auth.hello');
     } 
 
 
@@ -33,6 +34,29 @@ class LoginController extends Controller
         return view('auth.homepage');
     }
 
+    public function create()
+    {
+        return view('auth.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'Is_Active' => 'sometimes',
+        ]);
+    
+        Category::create([ 
+            'name' => $request->name,
+            'description' => $request->description,
+            'Is_Active' => $request->Is_Active ==true ? 1:0,
+        ]);
+    
+        return redirect('layouts/create')->with('status', "created")->with('status','created');
+    }
+    
+       
     public function loginPost(Request $request)
     {
         $request->validate([
@@ -72,7 +96,7 @@ class LoginController extends Controller
             return redirect(route('auth.login'))->with('error', "Registration failed. Please try again.");
         }
 
-        return redirect(route('auth.login'))->with('success', "Registration successful. Please log in.");
+        return redirect(route('auth.login'))->with('status', "Registration successful. Please log in.");
     }
 
     public function logout()

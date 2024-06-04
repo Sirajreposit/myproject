@@ -12,10 +12,8 @@ class Category extends Model
     protected $table = 'Category';
     protected $fillable=[
         'name',
-        'date',
-        'purpose',
-        'amount',
-        'reciept'
+        'description',
+        'Is-active'
        
 
     ];
