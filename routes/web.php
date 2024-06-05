@@ -26,7 +26,8 @@ Route::get('/auth/homepage',[LoginController::class,'home'])->name('dashboard');
 Route::get('/auth/logout',[LoginController::class,'logout'])->name('auth.logout');
 Route::get('layouts/applayout',[LoginController::class,'index'])->name('hello');
 Route::get('layouts/create',[LoginController::class,'create'])->name('helloo');
-Route::post('layouts/create',[LoginController::class,'store'])->name('helloo');
+Route::post('layouts/create',[LoginController::class,'store'])->name('hellow');
+Route::get('layouts/{id}/edit',[LoginController::class,'edit']);
 
 
 

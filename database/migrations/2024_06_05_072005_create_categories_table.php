@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('date');
-            $table->string('purpose');
-            $table->string('amount');
-            $table->string('reciept');
+            $table->string('Name');
+            $table->string('Description');
+            $table->boolean('Is_Active')->default(1);
             $table->timestamps();
         });
     }

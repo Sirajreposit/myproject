@@ -86,7 +86,7 @@
                   <li><a href="#">Amount</a></li>
                   <li><a href="#">Purchase</a></li>
                   <li><a href="#">Reciept</a></li>
-                  <li><a href="{{route("category")}}">Expences</a></li>
+                  <li><a href="{{url('layouts/applayout')}}">Expences</a></li>
               </ul>
           </div>
       </div>

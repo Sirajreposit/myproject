@@ -13,12 +13,6 @@ use App\Models\Category;
 class LoginController extends Controller
 {
 
-    public function index()
-    {
-        return view('auth.hello');
-    } 
-
-
     public function register()
     {
         return view('auth.register');
@@ -34,7 +28,20 @@ class LoginController extends Controller
         return view('auth.homepage');
     }
 
-    public function create()
+    public function index()
+    {
+        $categories = category::get();
+        return view('auth.hello', compact('categories'));
+    } 
+
+
+    public function create(int $id)
+    {  
+       $category = Category::findOrFail($id);
+       return $category;
+    }
+
+    public function edit()
     {
         return view('auth.create');
     }
@@ -42,15 +49,15 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'Name' => 'required|max:225',
+            'Description' => 'required|max:225',
             'Is_Active' => 'sometimes',
         ]);
     
         Category::create([ 
-            'name' => $request->name,
-            'description' => $request->description,
-            'Is_Active' => $request->Is_Active ==true ? 1:0,
+            'Name' => $request->Name,
+            'Description' => $request->Description,
+            'Is_Active' => $request->Is_Active == true ? 1:0,
         ]);
     
         return redirect('layouts/create')->with('status', "created")->with('status','created');
