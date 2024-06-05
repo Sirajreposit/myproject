@@ -35,15 +35,22 @@ class LoginController extends Controller
     } 
 
 
-    public function create(int $id)
+    public function show(int $id)
     {  
-       $category = Category::findOrFail($id);
-       return $category;
-    }
+        $category = Category::findOrFail($id);
+        //return $category;//
 
+        return view('auth.edit');
+    }
+    
     public function edit()
     {
         return view('auth.create');
+    }
+
+    public function create()
+    {
+        return view('auth.create',compact('category'));
     }
 
     public function store(Request $request)
