@@ -28,6 +28,5 @@ Route::get('layouts/applayout',[LoginController::class,'index'])->name('hello');
 Route::get('layouts/create',[LoginController::class,'create'])->name('helloo');
 Route::post('layouts/create',[LoginController::class,'store'])->name('hellow');
 Route::get('layouts/{id}/edit',[LoginController::class,'edit']);
-
-
-
+Route::put('layouts/{id}/edit', [LoginController::class, 'update']);
+Route::get('layouts/{id}/delete',[LoginController::class,'delete']);

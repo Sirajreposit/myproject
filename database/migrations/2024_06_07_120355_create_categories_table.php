@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->date('Date');
             $table->string('Name');
-            $table->string('Description');
-            $table->boolean('Is_Active')->default(1);
+            $table->text('Purpose');
+            $table->decimal('Amount', 8, 2);
+            $table->string('Reciept')->nullable(); // Allowing nullable values for Reciept
             $table->timestamps();
         });
     }

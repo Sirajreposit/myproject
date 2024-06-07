@@ -1,14 +1,14 @@
 <x-App-Layout>
 
     <x-slot name="title">
-        Add Categories
+        Edit Categories
     </x-slot>
 
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
 
-                @if(session('status'))
+                @if (session('status'))
                     <div class="alert alert-success">{{ session('status') }}</div>
                 @endif
 
@@ -19,41 +19,55 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('layouts/create') }}" method="POST">
+                        <form action="{{ url('layouts/' . $category->id . '/edit') }}" method="POST">
+
                             @csrf
-                            
+                            @method('PUT')
+                            <div class="mb-3">
+                                <label>Date</label>
+                                <input type="date" name="Date" value="{{ old('Date') }}" class="form-control" />
+
+                                @error('Date')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                             <div class="mb-3">
                                 <label>Name</label>
-                                <input type="text" name="Name" value="{{ old('name') }}" class="form-control"/>
-                               
-                                @error('Name')  
-                                    <span class="text-danger">{{ $message }}</span> 
+                                <input type="text" name="Name" value="{{ old('Name') }}" class="form-control" />
+                                @error('Name')
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
-
                             </div>
 
                             <div class="mb-3">
-                                <label>Description</label>
-                                <textarea name="Description" class="form-control" rows="3">{{ old('description') }}</textarea>
-                               
-                                @error('Description')  
-                                    <span class="text-danger">{{ $message }}</span> 
+                                <label>Purpose</label>
+                                <textarea name="Purpose" class="form-control">{{ old('Purpose') }}</textarea>
+                                @error('Purpose')
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
-
                             </div>
 
                             <div class="mb-3">
-                                <label>Is Active</label>
-                                <input type="checkbox" name="Is_Active" {{ old('is_active') ? 'checked' : '' }}/>
-                                
-                                @error('Is_Ative')  
-                                <span class="text-danger">{{ $message }}</span> 
+                                <label>Amount</label>
+                                <input type="number" name="Amount" value="{{ old('Amount') }}" class="form-control" />
+                                @error('Amount')
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
-
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <label>Reciept</label>
+                                <input type="text" name="Reciept" value="{{ old('Reciept') }}"
+                                    class="form-control" />
+                                @error('Reciept')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>

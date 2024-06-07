@@ -10,12 +10,13 @@ class Category extends Model
     use HasFactory;
 
     protected $table = 'categories';
-    
-    protected $fillable=[
+
+    protected $fillable = [
+        'Date',
         'Name',
-        'Description',
-        'Is-Active'
-       
+        'Purpose',
+        'Amount',
+        'Reciept'
 
     ];
 }

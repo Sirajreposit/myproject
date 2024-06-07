@@ -16,12 +16,12 @@ class LoginController extends Controller
     public function register()
     {
         return view('auth.register');
-    } 
+    }
 
     public function login()
     {
         return view('auth.login');
-    } 
+    }
 
     public function home()
     {
@@ -32,50 +32,79 @@ class LoginController extends Controller
     {
         $categories = category::get();
         return view('auth.hello', compact('categories'));
-    } 
-
-
-    public function show(int $id)
-    {  
-        $category = Category::findOrFail($id);
-        //return $category;//
-
-        return view('auth.edit');
     }
-    
-    public function edit()
+
+
+
+    public function edit(int $id)
     {
-        return view('auth.create');
+        $category = Category::findOrFail($id);
+        return view('auth.edit', compact('category'));
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $request->validate([
+                'Date' => 'required|date',
+                'Name' => 'required|max:225',
+                'Purpose' => 'required|max:225',
+                'Amount' => 'required|numeric',
+                'Reciept' => 'nullable|string'
+   ]);
+
+        Category::FindOrFail($id)->update([
+                'Date' => $request->Date,
+                'Name' => $request->Name,
+                'Purpose' => $request->purpose,
+                'Amount' =>$request->Amount,
+                'reciept' => $request->Reciept,
+            ]);
+
+        return redirect()->back()->with('status', "CategoryUpdated");
+    }
+    public function delete(int $id)
+    {
+        $Category = Category::FindOrFail($id);
+        $Category->delete();
+        return redirect()->back()->with('status', "Category Deleted");
     }
 
     public function create()
     {
-        return view('auth.create',compact('category'));
+        return view('auth.create');
     }
+
+
+
+
 
     public function store(Request $request)
     {
         $request->validate([
-            'Name' => 'required|max:225',
-            'Description' => 'required|max:225',
-            'Is_Active' => 'sometimes',
+            'Date'    => 'required|date',
+            'Name'    => 'required|max:225',
+            'Purpose' => 'required|max:225',
+            'Amount'  => 'required|numeric',
+            'Reciept' => 'nullable|string',
         ]);
-    
-        Category::create([ 
-            'Name' => $request->Name,
-            'Description' => $request->Description,
-            'Is_Active' => $request->Is_Active == true ? 1:0,
+
+        Category::create([
+            'Date'     => $request->Date,
+            'Name'     => $request->Name,
+            'Purpose'  => $request->Purpose,
+            'Amount'   => $request->Amount,
+            'reciept'  => $request->Reciept,
         ]);
-    
-        return redirect('layouts/create')->with('status', "created")->with('status','created');
+
+        return redirect('layouts/create')->with('status', "created")->with('status', 'Category successfully created');
     }
-    
-       
+
+
     public function loginPost(Request $request)
     {
         $request->validate([
-            'email'=>'required',
-            'password'=>'required'
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -101,7 +130,7 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
-        
+
         // Create the user
         $save = $user->save();
 
@@ -119,8 +148,4 @@ class LoginController extends Controller
         Auth::logout();
         return redirect(route('auth.login'));
     }
-
-
-
-   
 }

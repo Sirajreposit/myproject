@@ -16,9 +16,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Date</th>
                                     <th>Name</th>
                                     <th>purpose</th>
-                                    <th>Is Active</th>
+                                    <th>Amount</th>
+                                    <th>reciept</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -26,12 +28,14 @@
                                 @foreach ($categories as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
+                                        <td>{{ $item->Date }}</td>
                                         <td>{{ $item->Name }}</td>
-                                        <td>{{ $item->Description }}</td>
-                                        <td>{{ $item->Is_Active ? 'Yes' : 'No' }}</td>
+                                        <td>{{ $item->purpose }}</td>
+                                        <td>{{ $item->Amount }}</td>
+                                        <td>{{ $item->reciept }}</td>
                                         <td>
-                                            <a href="{{url('layouts/'.$item->id .'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="{{url('layouts/'.$item->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{url('layouts/'.$item->id.'/delete')}}" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
