@@ -31,6 +31,20 @@
                                 @enderror
                             </div>
 
+
+                            <div class="mb-3">
+                                <label for="expense_type" class="form-label">Expense Types</label>
+                                <select name="ExpenseType" id="expense_type" class="form-select">
+                                    <option value="">Select an Expense Type</option><hr>
+                                    <option value="another_action" {{ old('ExpenseType') == 'Daily_Expences' ? 'selected' : '' }}>Daily Expences</option>
+                                    <option value="something_else" {{ old('ExpenseType') == 'grocery' ? 'selected' : '' }}>grocery</option>
+                                    <option value="separated_link" {{ old('ExpenseType') == 'unwanted' ? 'selected' : '' }}>unwanted</option>
+                                </select>
+                                @error('ExpenseType')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                             <div class="mb-3">
                                 <label>Name</label>
                                 <input type="text" name="Name" value="{{ old('Name') }}" class="form-control" />

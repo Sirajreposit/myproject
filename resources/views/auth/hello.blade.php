@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Categories
+                        <h4>Expences
                             <a href="{{ url('layouts/create') }}" class="btn btn-success float-end">Add Category</a>
                         </h4>
                     </div>

@@ -86,6 +86,40 @@
     .navbar-nav .nav-link {
         font-size: 1.25rem; /* Increase font size for nav links */
     }
+
+    .welcome-section {
+        text-align: center;
+        padding: 5rem 0;
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    }
+
+    .features-section {
+        padding: 5rem 0;
+    }
+
+    .feature {
+        text-align: center;
+        padding: 2rem;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        margin: 1rem;
+    }
+
+    .call-to-action {
+        text-align: center;
+        padding: 5rem 0;
+        background-color: #70b088;
+        color: #fff;
+    }
+
+    .call-to-action button {
+        font-size: 1.5rem;
+        padding: 1rem 2rem;
+        background-color: #343a40;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
 </style>
 
 <body>
@@ -150,18 +184,45 @@
                         <h3>Essentials</h3>
                     </div>
                     <ul class="list-unstyled">
-                        <li><a href="#">Date</a></li>
-                        <li><a href="#">Amount</a></li>
-                        <li><a href="#">Purchase</a></li>
-                        <li><a href="#">Receipt</a></li>
                         <li><a href="{{ url('layouts/applayout') }}">Expenses</a></li>
+                        <li><a href="{{ route('helloo') }}">Categories</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Main content -->
             <div class="container-fluid px-0 mx-0">
-                <!-- Your main content here -->
+                <!-- Welcome Section -->
+                <section class="welcome-section">
+                    <h1>Welcome </h1>
+                    <p>Your one-stop solution for managing expenses efficiently.</p>
+                </section>
+
+                <!-- Features Section -->
+                <section class="features-section d-flex flex-wrap justify-content-center">
+                    <div class="feature col-md-3">
+                        <i class="fas fa-calendar-alt fa-3x mb-3"></i>
+                        <h4>Track Your Dates</h4>
+                        <p>Keep track of important dates and deadlines.</p>
+                    </div>
+                    <div class="feature col-md-3">
+                        <i class="fas fa-dollar-sign fa-3x mb-3"></i>
+                        <h4>Manage Your Finances</h4>
+                        <p>Monitor your expenses and manage your budget effectively.</p>
+                    </div>
+                    <div class="feature col-md-3">
+                        <i class="fas fa-receipt fa-3x mb-3"></i>
+                        <h4>Store Receipts</h4>
+                        <p>Save and organize your purchase receipts for easy access.</p>
+                    </div>
+                </section>
+
+                <!-- Call to Action Section -->
+                <section class="call-to-action">
+                    <h2>Get Started Today</h2>
+                    <p>Join us and take control of your expenses now!</p>
+                    <button class="btn btn-primary">Sign Up</button>
+                </section>
             </div>
         </div>
     </div>
