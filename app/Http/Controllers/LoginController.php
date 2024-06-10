@@ -55,9 +55,9 @@ class LoginController extends Controller
         Category::FindOrFail($id)->update([
                 'Date' => $request->Date,
                 'Name' => $request->Name,
-                'Purpose' => $request->purpose,
+                'Purpose' => $request->Purpose,
                 'Amount' =>$request->Amount,
-                'reciept' => $request->Reciept,
+                'Reciept' => $request->Reciept,
             ]);
 
         return redirect()->back()->with('status', "CategoryUpdated");
@@ -93,7 +93,7 @@ class LoginController extends Controller
             'Name'     => $request->Name,
             'Purpose'  => $request->Purpose,
             'Amount'   => $request->Amount,
-            'reciept'  => $request->Reciept,
+            'Reciept'  => $request->Reciept,
         ]);
 
         return redirect('layouts/create')->with('status', "created")->with('status', 'Category successfully created');

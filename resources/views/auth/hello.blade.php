@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Categories
-                            <a href="{{ url('layouts/create') }}" class="btn btn-primary float-end">Add Category</a>
+                            <a href="{{ url('layouts/create') }}" class="btn btn-success float-end">Add Category</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -18,9 +18,9 @@
                                     <th>ID</th>
                                     <th>Date</th>
                                     <th>Name</th>
-                                    <th>purpose</th>
+                                    <th>Purpose</th>
                                     <th>Amount</th>
-                                    <th>reciept</th>
+                                    <th>Reciept</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -30,12 +30,13 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->Date }}</td>
                                         <td>{{ $item->Name }}</td>
-                                        <td>{{ $item->purpose }}</td>
+                                        <td>{{ $item->Purpose }}</td>
                                         <td>{{ $item->Amount }}</td>
-                                        <td>{{ $item->reciept }}</td>
+                                        <td>{{ $item->Reciept }}</td>
                                         <td>
                                             <a href="{{url('layouts/'.$item->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
-                                            <a href="{{url('layouts/'.$item->id.'/delete')}}" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="{{url('layouts/'.$item->id.'/delete')}}" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Are you shure to to delete the category?')">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

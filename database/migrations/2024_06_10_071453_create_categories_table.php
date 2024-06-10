@@ -16,8 +16,8 @@ return new class extends Migration
             $table->date('Date');
             $table->string('Name');
             $table->text('Purpose');
-            $table->decimal('Amount', 8, 2);
-            $table->string('Reciept')->nullable(); // Allowing nullable values for Reciept
+            $table->decimal('Amount', 10, 2);
+            $table->string('Reciept'); // Allowing nullable values for Reciept
             $table->timestamps();
         });
     }

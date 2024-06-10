@@ -25,7 +25,7 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label>Date</label>
-                                <input type="date" name="Date" value="{{ old('Date') }}" class="form-control" />
+                                <input type="date" name="Date" value="{{ $category->Date }}" class="form-control" />
 
                                 @error('Date')
                                     <span class="text-danger">{{ $message }}</span>
@@ -34,7 +34,7 @@
 
                             <div class="mb-3">
                                 <label>Name</label>
-                                <input type="text" name="Name" value="{{ old('Name') }}" class="form-control" />
+                                <input type="text" name="Name" value="{{ $category->Name }}" class="form-control" />
                                 @error('Name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -42,7 +42,7 @@
 
                             <div class="mb-3">
                                 <label>Purpose</label>
-                                <textarea name="Purpose" class="form-control">{{ old('Purpose') }}</textarea>
+                                <textarea name="Purpose" class="form-control">{{ $category->Purpose }}</textarea>
                                 @error('Purpose')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -50,7 +50,7 @@
 
                             <div class="mb-3">
                                 <label>Amount</label>
-                                <input type="number" name="Amount" value="{{ old('Amount') }}" class="form-control" />
+                                <input type="number" name="Amount" value="{{ $category->Amount }}" class="form-control" />
                                 @error('Amount')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -58,7 +58,7 @@
 
                             <div class="mb-3">
                                 <label>Reciept</label>
-                                <input type="text" name="Reciept" value="{{ old('Reciept') }}"
+                                <input type="text" name="Reciept" value="{{ $category->Reciept }}"
                                     class="form-control" />
                                 @error('Reciept')
                                     <span class="text-danger">{{ $message }}</span>
