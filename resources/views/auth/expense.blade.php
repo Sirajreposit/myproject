@@ -23,10 +23,11 @@
 
                             @csrf
                             @method('PUT')
-
                             <div class="mb-3">
                                 <label>Date</label>
-                                <input type="date" name="Date" value="{{ $category->Date }}" class="form-control" />
+                                <input type="date" name="Date" value="{{ $category->Date }}"
+                                    class="form-control" />
+
                                 @error('Date')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -34,7 +35,8 @@
 
                             <div class="mb-3">
                                 <label>Name</label>
-                                <input type="text" name="Name" value="{{ $category->Name }}" class="form-control" />
+                                <input type="text" name="Name" value="{{ $category->Name }}"
+                                    class="form-control" />
                                 @error('Name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -42,20 +44,23 @@
 
                             <div class="mb-3">
                                 <label for="expense_type" class="form-label">Expense Types</label>
-                                <div class="input-group gap-3">
+                                <div class="input-group">
                                     <select name="ExpenseType" id="expense_type" class="form-select">
                                         <option value="">Select an Expense Type</option>
-                                        @foreach ($expenseTypes as $type)
-                                            <option value="{{ $type->name }}"
-                                                {{ old('ExpenseType', $category->ExpenseType) == $type->name ? 'selected' : '' }}>
-                                                {{ $type->name }}
-                                            </option>
-                                        @endforeach
+                                        <option value="Daily_Expences"
+                                            {{ old('ExpenseType') == 'Daily_Expences' ? 'selected' : '' }}>Daily
+                                            Expenses</option>
+                                        <option value="grocery" {{ old('ExpenseType') == 'grocery' ? 'selected' : '' }}>
+                                            Grocery</option>
+                                        <option value="unwanted"
+                                            {{ old('ExpenseType') == 'unwanted' ? 'selected' : '' }}>Unwanted</option>
                                     </select>
-                                    @error('ExpenseType')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <button type="button" class="btn btn-primary ms-2" onclick="addExpenses()">Add
+                                        Custom Expenses</button>
                                 </div>
+                                @error('ExpenseType')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
@@ -68,7 +73,8 @@
 
                             <div class="mb-3">
                                 <label>Amount</label>
-                                <input type="number" name="Amount" value="{{ $category->Amount }}" class="form-control" />
+                                <input type="number" name="Amount" value="{{ $category->Amount }}"
+                                    class="form-control" />
                                 @error('Amount')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -76,31 +82,21 @@
 
                             <div class="mb-3">
                                 <label>Reciept</label>
-                                <input type="text" name="Reciept" value="{{ $category->Reciept }}" class="form-control" />
+                                <input type="text" name="Reciept" value="{{ $category->Reciept }}"
+                                    class="form-control" />
                                 @error('Reciept')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
+
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
-
-                        <div class="hello mt-4">
-                            <form action="{{ route('adddrop') }}" method="POST">
-                                @csrf
-                                <div class="input-group">
-                                    <input type="text" name="exptype" class="form-control" placeholder="Enter Custom Expense Type">
-                                    <button type="submit" class="btn btn-primary ms-2">Add Custom Expenses</button>
-                                </div>
-                            </form>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </x-App-Layout>

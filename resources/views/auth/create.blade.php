@@ -25,22 +25,7 @@
                             <div class="mb-3">
                                 <label>Date</label>
                                 <input type="date" name="Date" value="{{ old('Date') }}" class="form-control" />
-
                                 @error('Date')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="expense_type" class="form-label">Expense Types</label>
-                                <select name="ExpenseType" id="expense_type" class="form-select">
-                                    <option value="">Select an Expense Type</option><hr>
-                                    <option value="another_action" {{ old('ExpenseType') == 'Daily_Expences' ? 'selected' : '' }}>Daily Expences</option>
-                                    <option value="something_else" {{ old('ExpenseType') == 'grocery' ? 'selected' : '' }}>grocery</option>
-                                    <option value="separated_link" {{ old('ExpenseType') == 'unwanted' ? 'selected' : '' }}>unwanted</option>
-                                </select>
-                                @error('ExpenseType')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -51,6 +36,23 @@
                                 @error('Name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="expense_type" class="form-label">Expense Types</label>
+                                <div class="input-group gap-3">
+                                    <select name="ExpenseType" id="expense_type" class="form-select">
+                                        <option value="">Select an Expense Type</option>
+                                        @foreach ($expenseTypes as $type)
+                                            <option value="{{ $type->name }}"
+                                                {{ old('ExpenseType') == $type->name ? 'selected' : '' }}>
+                                                {{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('ExpenseType')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -81,9 +83,55 @@
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
+
+                        <div class="hello mt-4">
+                            <form action="{{ route('adddrop') }}" method="POST">
+                                @csrf
+                                <div class="input-group">
+                                    <input type="text" name="exptype" class="form-control" placeholder="Enter Custom Expense Type">
+                                    <button type="submit" class="btn btn-primary ms-2">Add Custom Expenses</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#custom-expense-form').on('submit', function (e) {
+                e.preventDefault();
+
+                let exptype = $('#exptype').val();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: $(this).attr('method'),
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            // Append new expense type to the dropdown
+                            $('#expense_type').append(new Option(exptype, exptype));
+                            // Clear the input field
+                            $('#exptype').val('');
+                        } else {
+                            // Handle validation errors or other errors
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function (xhr) {
+                        // Handle error
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+
+
 </x-App-Layout>

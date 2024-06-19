@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('Date');
             $table->string('Name');
+            $table->string('ExpenseType');
             $table->text('Purpose');
             $table->decimal('Amount', 10, 2);
             $table->string('Reciept'); // Allowing nullable values for Reciept

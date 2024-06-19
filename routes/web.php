@@ -30,3 +30,5 @@ Route::post('layouts/create',[LoginController::class,'store'])->name('hellow');
 Route::get('layouts/{id}/edit',[LoginController::class,'edit']);
 Route::put('layouts/{id}/edit', [LoginController::class, 'update']);
 Route::get('layouts/{id}/delete',[LoginController::class,'delete']);
+Route::post('layouts/adddrop',[LoginController::class,'addDrop'])->name('adddrop');
+

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\Category;
-
+use App\Models\ExpenseType;
 
 class LoginController extends Controller
 {
@@ -38,27 +38,30 @@ class LoginController extends Controller
 
     public function edit(int $id)
     {
+        $expenseTypes = ExpenseType::all();
         $category = Category::findOrFail($id);
-        return view('auth.edit', compact('category'));
+        return view('auth.edit', compact(['category', 'expenseTypes']));
     }
 
     public function update(Request $request, int $id)
     {
         $request->validate([
-                'Date' => 'required|date',
-                'Name' => 'required|max:225',
-                'Purpose' => 'required|max:225',
-                'Amount' => 'required|numeric',
-                'Reciept' => 'nullable|string'
-   ]);
+            'Date' => 'required|date',
+            'Name' => 'required|max:225',
+            'ExpenseType'=>'required',
+            'Purpose' => 'required|max:225',
+            'Amount' => 'required|numeric',
+            'Reciept' => 'nullable|string'
+        ]);
 
         Category::FindOrFail($id)->update([
-                'Date' => $request->Date,
-                'Name' => $request->Name,
-                'Purpose' => $request->Purpose,
-                'Amount' =>$request->Amount,
-                'Reciept' => $request->Reciept,
-            ]);
+            'Date' => $request->Date,
+            'Name' => $request->Name,
+            'ExpenseType'=>$request->ExpenseType,
+            'Purpose' => $request->Purpose,
+            'Amount' => $request->Amount,
+            'Reciept' => $request->Reciept,
+        ]);
 
         return redirect()->back()->with('status', "CategoryUpdated");
     }
@@ -71,8 +74,10 @@ class LoginController extends Controller
 
     public function create()
     {
-        return view('auth.create');
+        $expenseTypes = ExpenseType::all();
+        return view('auth.create', compact(['expenseTypes']));
     }
+
 
 
 
@@ -80,9 +85,11 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'Date'    => 'required|date',
             'Name'    => 'required|max:225',
+            'ExpenseType'=>'required',
             'Purpose' => 'required|max:225',
             'Amount'  => 'required|numeric',
             'Reciept' => 'nullable|string',
@@ -91,6 +98,7 @@ class LoginController extends Controller
         Category::create([
             'Date'     => $request->Date,
             'Name'     => $request->Name,
+            'ExpenseType'=>$request->ExpenseType,
             'Purpose'  => $request->Purpose,
             'Amount'   => $request->Amount,
             'Reciept'  => $request->Reciept,
@@ -140,6 +148,10 @@ class LoginController extends Controller
         }
 
         return redirect(route('auth.login'))->with('status', "Registration successful. Please log in.");
+    }
+
+    public function addDrop(Request $request){
+        dd($request);
     }
 
     public function logout()

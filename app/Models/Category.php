@@ -14,6 +14,7 @@ class Category extends Model
     protected $fillable = [
         'Date',
         'Name',
+        'ExpenseType',
         'Purpose',
         'Amount',
         'Reciept'

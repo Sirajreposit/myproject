@@ -18,6 +18,7 @@
                                     <th>ID</th>
                                     <th>Date</th>
                                     <th>Name</th>
+                                    <th>ExpenseType</th>
                                     <th>Purpose</th>
                                     <th>Amount</th>
                                     <th>Reciept</th>
@@ -30,6 +31,7 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->Date }}</td>
                                         <td>{{ $item->Name }}</td>
+                                        <td>{{ $item->ExpenseType}}</td>
                                         <td>{{ $item->Purpose }}</td>
                                         <td>{{ $item->Amount }}</td>
                                         <td>{{ $item->Reciept }}</td>
