@@ -1,5 +1,4 @@
 <x-App-Layout>
-
     <x-slot name="title">
         Add Categories
     </x-slot>
@@ -7,7 +6,6 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-
                 @if (session('status'))
                     <div class="alert alert-success">{{ session('status') }}</div>
                 @endif
@@ -65,8 +63,7 @@
 
                             <div class="mb-3">
                                 <label>Amount</label>
-                                <input type="number" name="Amount" value="{{ old('Amount') }}"
-                                    class="form-control" />
+                                <input type="number" name="Amount" value="{{ old('Amount') }}" class="form-control" />
                                 @error('Amount')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -74,8 +71,7 @@
 
                             <div class="mb-3">
                                 <label>Reciept</label>
-                                <input type="text" name="Reciept" value="{{ old('Reciept') }}"
-                                    class="form-control" />
+                                <input type="text" name="Reciept" value="{{ old('Reciept') }}" class="form-control" />
                                 @error('Reciept')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -87,21 +83,20 @@
                         </form>
 
                         <div class="hello mt-4">
-                            <div class="">
-                                <label> Add Custom Expenses </label>
-                                <form action="{{ route('adddrop') }}" method="POST" id="inform">
+                            <div>
+                                <label for="exptype">Add Custom Expenses</label>
+                                <form action="{{ route('adddrop') }}" method="POST" id="custom-expense-form">
                                     @csrf
-                                    <input type="text" name="exptype" id="exptype" class="form-control"
-                                        placeholder="Enter Custom Expense Type">
+                                    <input type="text" name="exptype" id="exptype" class="form-control" placeholder="Enter Custom Expense Type">
+                                    @error('exptype')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <div class="mt-3">
-                                        <button type="submit" id="submit" class="btn btn-primary ms-2">Add Custom
-                                            Expenses</button>
+                                        <button type="submit" id="submit" class="btn btn-primary ms-2">Add Custom Expenses</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -109,7 +104,6 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#custom-expense-form').on('submit', function(e) {
@@ -121,6 +115,9 @@
                     url: $(this).attr('action'),
                     method: $(this).attr('method'),
                     data: $(this).serialize(),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     success: function(response) {
                         if (response.success) {
                             // Append new expense type to the dropdown
@@ -140,6 +137,4 @@
             });
         });
     </script>
-
-
 </x-App-Layout>
