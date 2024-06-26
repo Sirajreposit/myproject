@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 </head>
 
 <style>
@@ -24,43 +25,45 @@
     }
 
     .offcanvas-header {
-        background-color: #343a40; /* Dark background color */
-        color: #fff; /* Light text color */
+        background-color: #343a40;
+        color: #fff;
     }
 
     .offcanvas-title {
-        color: #fff; /* Light text color */
+        color: #fff;
     }
 
     .offcanvas-body {
-        padding: 20px; /* Add padding for better appearance */
+        padding: 20px;
     }
 
     .offcanvas-body .text-muted {
-        font-size: 14px; /* Adjust font size */
+        font-size: 14px;
     }
 
     .offcanvas-body ul {
-        display: grid; /* Use grid layout */
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
-        gap: 10px; /* Add gap between items */
-        padding: 0; /* Remove default padding */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        padding: 0;
     }
 
     .offcanvas-body ul li {
-        padding: 10px; /* Add padding to list items */
-        border-radius: 5px; /* Add border radius */
-        background-color: #70b088; /* Light background color */
-        transition: background-color 0.3s; /* Add transition */
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #70b088;
+        transition: background-color 0.3s;
+        list-style: none;
     }
 
     .offcanvas-body ul li a {
-        color: #343a40; /* Dark text color */
-        text-decoration: none; /* Remove default underline */
+        color: #343a40;
+        text-decoration: none;
+        display: block;
     }
 
     .offcanvas-body ul li:hover {
-        background-color: #e9ecef; /* Change background color on hover */
+        background-color: #e9ecef;
     }
 
     .profile-img {
@@ -75,22 +78,22 @@
     }
 
     .navbar {
-        padding: 1rem 2rem; /* Increase padding for a larger navbar */
+        padding: 1rem 2rem;
     }
 
     .navbar-brand button {
-        font-size: 1.25rem; /* Increase font size for the button */
-        padding: 0.5rem 1rem; /* Increase padding for the button */
+        font-size: 1.25rem;
+        padding: 0.5rem 1rem;
     }
 
     .navbar-nav .nav-link {
-        font-size: 1.25rem; /* Increase font size for nav links */
+        font-size: 1.25rem;
     }
 
     .welcome-section {
         text-align: center;
         padding: 5rem 0;
-        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        background-color: rgba(255, 255, 255, 0);
     }
 
     .features-section {
@@ -141,9 +144,6 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-white" href="#">About</a>
                             </li>
                             <li class="nav-item">
@@ -186,6 +186,8 @@
                     <ul class="list-unstyled">
                         <li><a href="{{ url('layouts/applayout') }}">Expenses</a></li>
                         <li><a href="{{ route('helloo') }}">Categories</a></li>
+                        <li><a href="{{ route('haiii') }}">Product</a></li>
+                        <li><a href="{{ route('bro') }}">Product Categories</a></li>
                     </ul>
                 </div>
             </div>
@@ -194,7 +196,7 @@
             <div class="container-fluid px-0 mx-0">
                 <!-- Welcome Section -->
                 <section class="welcome-section">
-                    <h1>Welcome </h1>
+                    <h1>Welcome</h1>
                     <p>Your one-stop solution for managing expenses efficiently.</p>
                 </section>
 
@@ -221,7 +223,7 @@
                 <section class="call-to-action">
                     <h2>Get Started Today</h2>
                     <p>Join us and take control of your expenses now!</p>
-                    <button class="btn btn-primary">Sign Up</button>
+                    <button id="signupButton" class="btn btn-primary">Sign Up</button>
                 </section>
             </div>
         </div>

@@ -65,7 +65,8 @@
 
                             <div class="mb-3">
                                 <label>Amount</label>
-                                <input type="number" name="Amount" value="{{ old('Amount') }}" class="form-control" />
+                                <input type="number" name="Amount" value="{{ old('Amount') }}"
+                                    class="form-control" />
                                 @error('Amount')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -73,7 +74,8 @@
 
                             <div class="mb-3">
                                 <label>Reciept</label>
-                                <input type="text" name="Reciept" value="{{ old('Reciept') }}" class="form-control" />
+                                <input type="text" name="Reciept" value="{{ old('Reciept') }}"
+                                    class="form-control" />
                                 @error('Reciept')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -85,14 +87,20 @@
                         </form>
 
                         <div class="hello mt-4">
-                            <form action="{{ route('adddrop') }}" method="POST">
-                                @csrf
-                                <div class="input-group">
-                                    <input type="text" name="exptype" class="form-control" placeholder="Enter Custom Expense Type">
-                                    <button type="submit" class="btn btn-primary ms-2">Add Custom Expenses</button>
-                                </div>
-                            </form>
+                            <div class="">
+                                <label> Add Custom Expenses </label>
+                                <form action="{{ route('adddrop') }}" method="POST" id="inform">
+                                    @csrf
+                                    <input type="text" name="exptype" id="exptype" class="form-control"
+                                        placeholder="Enter Custom Expense Type">
+                                    <div class="mt-3">
+                                        <button type="submit" id="submit" class="btn btn-primary ms-2">Add Custom
+                                            Expenses</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+
 
                     </div>
                 </div>
@@ -103,8 +111,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#custom-expense-form').on('submit', function (e) {
+        $(document).ready(function() {
+            $('#custom-expense-form').on('submit', function(e) {
                 e.preventDefault();
 
                 let exptype = $('#exptype').val();
@@ -113,7 +121,7 @@
                     url: $(this).attr('action'),
                     method: $(this).attr('method'),
                     data: $(this).serialize(),
-                    success: function (response) {
+                    success: function(response) {
                         if (response.success) {
                             // Append new expense type to the dropdown
                             $('#expense_type').append(new Option(exptype, exptype));
@@ -124,7 +132,7 @@
                             alert('Error: ' + response.message);
                         }
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         // Handle error
                         alert('An error occurred. Please try again.');
                     }
